@@ -17,13 +17,16 @@ jobs:
     
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@main
-      env:
+      with:
+        #Chave SSH criada ao instanciar uma máquina na EC2
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        #IP Público da instância EC2
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        #Nome do usuário da instância EC2
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: /home/${{ secrets.REMOTE_USER }}
         EXCLUDE: "postgres-data"
-        
+
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
