@@ -11,7 +11,7 @@ ENV USER=root PASSWORD=root DBNAME=root
 COPY ./main main
 
 RUN chmod +x main
-
+#vamos mais uma vez
 COPY ./templates templates
 
 CMD [ "./main" ]
