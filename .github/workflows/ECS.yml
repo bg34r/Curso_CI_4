@@ -38,6 +38,6 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v2
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: Servico_API-GO
+        service: Servico_API-Go
         cluster: API-Go-Cursco-CI
         wait-for-service-stability: true
