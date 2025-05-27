@@ -13,5 +13,5 @@ COPY ./main main
 RUN chmod +x main
 
 COPY ./templates templates
-#mais uma vez
+#Lá e de volta outra vez
 CMD [ "./main" ]
