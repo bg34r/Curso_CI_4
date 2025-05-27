@@ -47,4 +47,12 @@ jobs:
 
     - name: Verificando se o serviço está rodando
       continue-on-error: true
-      run: sleep  30s ; wget LB-API-Go-Cuso-CI-539977083.us-east-2.elb.amazonaws.com:8000/bruno  
+      run: sleep  30s ; wget LB-API-Go-Cuso-CI-539977083.us-east-2.elb.amazonaws.com:8000/bruno
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+      with:
+        task-definition: task-definition.json.bkp
+        service: Servico_API-Go
+        cluster: API-Go-Cursco-CI
+        wait-for-service-stability: true
