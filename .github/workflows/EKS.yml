@@ -26,6 +26,10 @@ jobs:
 
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog init
 
+    - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog destroy -auto-approve
+
+    - run: return 1
+
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog apply -auto-approve
 
     - name: Kubectl tool installer
@@ -37,6 +41,14 @@ jobs:
 
     - run: kubectl get svc
 
-    - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog destroy -auto-approve
+    - run: kubectl create secret generic dbhost --from-literal=HOST=
 
-    - run: return 1
+    - run: kubectl create secret generic dbport --from-literal=DBPORT=
+
+    - run: kubectl create secret generic dbuser --from-literal=USER=
+
+    - run: kubectl create secret generic dbpassword --from-literal=PASSWORD=
+
+    - run: kubectl create secret generic dbname --from-literal=DBNAME=
+
+    - run: kubectl create secret generic port --from-literal=PORT=
