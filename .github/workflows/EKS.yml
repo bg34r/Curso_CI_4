@@ -26,6 +26,8 @@ jobs:
 
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog init
 
+    - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog destroy -auto-approve
+    - run: return 1
 
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog apply -auto-approve
 
@@ -61,6 +63,7 @@ jobs:
 
     - run: kubectl apply -f Infra_CI_Kubernetes/go.yaml
 
+    - run: kubectl set image deployment/go-api go=brunolaraujo/go_ci:${{ github.run_number}}
+    
     - run: terraform -chdir=Infra_CI_Kubernetes/env/Homolog destroy -auto-approve
-# tentando mais uma vez
     - run: return 1
